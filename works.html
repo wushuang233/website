@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碎片罅隙</title>
+    <link rel="stylesheet" href="works.css">
+    <link rel="icon" href="head.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <!-- <img src="head.jpg" alt=""> -->
+    <nav>
+        <div class="logo">无双</div>
+        <ul class="nav-menu">
+            <li onclick="redirectToIndex()">首页</li>
+            <li onclick="redirectToRecords()">千秋万代</li>
+            <li onclick="redirectToWorks()">碎片罅隙</li>
+            <li onclick="redirectToPicture()">流光溢彩</li>
+        </ul>
+
+        <div class="burger">
+            <div class="top-line"></div>
+            <div class="middle-line"></div>
+            <div class="bottom-line"></div>
+        </div>
+    </nav>
+    <div class="box">
+        <div class="slideshow">
+            <img src="photo/1.jpeg" alt="Image 1">
+            <img src="photo/2.jpeg" alt="Image 2">
+            <img src="photo/3.jpeg" alt="Image 3">
+            <img src="photo/4.jpeg" alt="Image 4">
+            <img src="photo/5.jpeg" alt="Image 5">
+            <img src="photo/6.jpeg" alt="Image 6">
+            <img src="photo/7.jpeg" alt="Image 7">
+            <img src="photo/8.jpeg" alt="Image 8">
+            <img src="photo/9.jpeg" alt="Image 9">
+            <img src="photo/10.jpeg" alt="Image 10">
+            <img src="photo/11.jpeg" alt="Image 11">
+            <img src="photo/12.jpeg" alt="Image 12">
+          </div>
+    </div>
+
+
+
+
+
+    <script>
+        // JavaScript部分
+        const images = document.querySelectorAll('.slideshow img');
+        let currentIndex = 0;
+    
+        // 隐藏所有图像，除了当前索引的图像
+        function hideImages() {
+          images.forEach((image, index) => {
+            if (index !== currentIndex) {
+              image.style.opacity = 0;
+            }
+          });
+        }
+    
+        // 显示当前索引的图像
+        function showCurrentImage() {
+          images[currentIndex].style.opacity = 1;
+        }
+    
+        // 切换到下一张图像
+        function nextImage() {
+          hideImages();
+          currentIndex = (currentIndex + 1) % images.length;
+          showCurrentImage();
+        }
+    
+        // 初始化轮播图
+        function initSlideshow() {
+          showCurrentImage();
+          setInterval(nextImage, 2000); // 每2秒切换一次图像
+        }
+    
+        // 调用初始化函数
+        initSlideshow();
+
+        const burger = document.querySelector(".burger");
+const newMenu = document.querySelector(".nav-menu");
+
+
+const navMenuItems = document.querySelectorAll(".nav-menu li");
+// 一点击按钮，按钮进入active状态，竖向菜单栏进入open状态，使竖向菜单中元素绑定动画
+burger.addEventListener("click", ( ) =>{
+    burger.classList.toggle("active");
+    newMenu.classList.toggle("open");
+    // 使元素有次序地进入，动画遵循设置的slideIn从form到to
+    navMenuItems.forEach((item,index) => {
+        if(item.style.animation){
+            item.style.animation = "";
+        }else{
+            item.style.animation = `0.3s ease-in slideIn forwards ${index * 0.1 + 0.3}s`;
+        }
+    })
+
+});
+
+        function redirectToIndex() {
+    window.location.href = "index.html"; 
+}
+
+function redirectToPicture() {
+    window.location.href = "picture.html";  
+}
+
+function redirectToWorks() {
+    window.location.href = "works.html";  
+}
+
+function redirectToRecords() {
+    window.location.href = "records.html";  
+}
+
+      </script>
+</body>
+
+</html>
